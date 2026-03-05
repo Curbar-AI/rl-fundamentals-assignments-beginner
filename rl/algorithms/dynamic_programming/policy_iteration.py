@@ -99,7 +99,7 @@ class PolicyIteration:
                     # HOMEWORK: the environment object has a method that computes the next state given the current state
                     # and the action.
                     # Use this method to compute the next state: next_state = env.compute_next_state(...)
-                    next_state  = None  # TODO: Implement this assignment
+                    next_state = None  # TODO: Implement this assignment
 
                     # The next state might be invalid (e.g. if the action is to move more cars than are available).
                     # The environment method returns None in this case, and this control structure skips the rest of the
@@ -118,7 +118,7 @@ class PolicyIteration:
                     # TODO: Implement this line
 
                     # HOMEWORK: delta <- max(delta, |v - V(s)|)
-                    delta  = None  # TODO: Implement this assignment
+                    delta = None  # TODO: Implement this assignment
 
             # HOMEWORK START: (2 lines)
             # If delta < self.theta, then the value function has converged, and policy evaluation can stop (break loop)
@@ -158,7 +158,7 @@ class PolicyIteration:
                     # HOMEWORK: the environment object has a method that computes the next state given the current state
                     # and the action.
                     # Use this method to compute the next state: next_state = env.compute_next_state(...)
-                    next_state  = None  # TODO: Implement this assignment
+                    next_state = None  # TODO: Implement this assignment
 
                     if next_state is None:
                         action_returns.append(-np.inf)    # This ensures invalid actions are never selected by argmax

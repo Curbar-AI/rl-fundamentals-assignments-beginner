@@ -1,4 +1,4 @@
-import numpy as np
+﻿import numpy as np
 from typing import Tuple
 from rl.environment.dynamic_programming.jacks_car_rental import JacksCarRental
 from rl.utils.general import set_filepath
@@ -35,8 +35,8 @@ class ValueIteration:
         Args:
             save_name (str): The name to use when saving the policy and value arrays.
         """
-        policy_dir = "./.data/dynamic_programming/policy_iteration/policy"
-        value_dir = "./.data/dynamic_programming/policy_iteration/value"
+        policy_dir = "./.data/dynamic_programming/value_iteration/policy"
+        value_dir = "./.data/dynamic_programming/value_iteration/value"
 
         # Ensure directories exist
         os.makedirs(policy_dir, exist_ok=True)
@@ -120,7 +120,7 @@ class ValueIteration:
                         # HOMEWORK: the environment object has a method that computes the next state given the current state
                         # and the action.
                         # Use this method to compute the next state: next_state = env.compute_next_state(...)
-                        next_state  = None  # TODO: Implement this assignment
+                        next_state = None  # TODO: Implement this assignment
 
                         # If these new states fall outside the range of possible states, then continue
                         if next_state is None:
@@ -148,7 +148,7 @@ class ValueIteration:
                     # TODO: Implement this line
 
                     # HOMEWORK: delta <- max(delta, |v - V(s)|)
-                    delta  = None  # TODO: Implement this assignment
+                    delta = None  # TODO: Implement this assignment
 
             print(f"Value improvement: loop {loop_idx}, delta = {delta}")
 
@@ -172,3 +172,4 @@ if __name__ == "__main__":
 
     # Plot the policy and value
     plot_policy_and_value(policy, value)
+

@@ -48,7 +48,7 @@ class Sarsa(TemporalDifferenceAgent):
             while not done:
 
                 # HOMEWORK: Make a step of the environment; observe R, S'
-                next_state, reward, terminated, truncated, _  = None  # TODO: Implement this assignment
+                next_state, reward, terminated, truncated, _ = None  # TODO: Implement this assignment
 
                 # HOMEWORK: Choose A' from S' using policy derived from Q (epsilon-greedy)
                 next_action: int  = None  # TODO: Implement this assignment
@@ -56,22 +56,18 @@ class Sarsa(TemporalDifferenceAgent):
                 # HOMEWORK STARTS: (~3-4 lines).
                 # Update Q(S, A), taking as target the TD target (R + gamma * Q(S', A'))
                 # You ultimately want to update via self.q_values.update(...)
-                td_target: float = reward + self.gamma * self.q_values.get(next_state, next_action)
-                td_error: float = td_target - self.q_values.get(state, action)
-                new_value: float = self.q_values.get(state, action) + self.alpha * td_error
-                self.q_values.update(state, action, new_value)
+                pass  # TODO: Implement this section
                 # HOMEWORK ENDS
 
                 # HOMEWORK STARTS: S <- S', A <- A' (2 lines)
-                state = next_state
-                action = next_action
+                pass  # TODO: Implement this section
                 # HOMEWORK ENDS
 
                 # HOMEWORK: Add reward to episode reward log (self.logger.log_timestep(...))
                 # TODO: Implement this line
 
                 # HOMEWORK: If S is terminal, then episode is done (will exit "while" loop)
-                done  = None  # TODO: Implement this assignment
+                done = None  # TODO: Implement this assignment
 
             # Add episode reward to list
             self.logger.log_episode()
