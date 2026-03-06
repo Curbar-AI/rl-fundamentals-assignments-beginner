@@ -121,8 +121,7 @@ def monte_carlo_pentagram_area(
         inside: bool  = None  # TODO: Implement this assignment
 
         # HOMEWORK STARTS: if the point is inside the pentagram, increment the inside_count (1-2 lines)
-        if inside:
-            inside_count += 1
+        pass  # TODO: Implement this section
         # HOMEWORK ENDS
 
         log.append(((x, y), inside))

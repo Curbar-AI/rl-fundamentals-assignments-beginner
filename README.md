@@ -1,123 +1,155 @@
-# RL fundamentals
-Welcome to the RL Fundamentals course! This repository contains all the materials, assignments, and examples you'll 
-need to master Reinforcement Learning concepts.
+﻿# RL Fundamentals
+
+This repository contains the reference implementations, assignments, and exercises for the Udemy course _Introduction to Reinforcement Learning_.
 
 ## Repository structure
 
-- **assignments/**
-  - Bandits: [bandits.md](assignments/bandits.md)
-  - MDPs: [mdps.md](assignments/mdps.md)
-  - Dynamic Programming: [dynamic_programming.md](assignments/dynamic_programming.md)
-  - Monte Carlo: [monte_carlo.md](assignments/monte_carlo.md)
-  - Temporal Difference: [temporal_difference.md](assignments/temporal_difference.md)
-  - Planning: [planning.md](assignments/planning.md)
-- **rl/**: Contains the core reinforcement learning algorithms and environment implementations.
-- **exercises/**: Additional exercises to reinforce learning.
-- **utils/**: Utility scripts and helper functions.
+- `assignments/`: student-facing assignment briefs.
+- `checks/`: beginner-friendly self-check commands for each topic.
+- `exercises/`: smaller guided exercises and side explorations.
+- `images/`: figures used in the course and assignment notes.
+- `rl/`: the main algorithm and environment implementations.
+- `utils/`: maintainer utilities, including student-repo generation.
 
-# What you'll implement
-|     Topic      |               [K-Armed Bandits](assignments/bandits.md)               |                          [Analytic solutions to MDPs](assignments/markov_decision_processes.md)                          | [Dynamic Programming](assignments/dynamic_programming.md) |
-|:--------------:|:---------------------------------------------------------------------:|:---------------------------------------------------------------------------------------------------:|:---------------------------------------------------------:|
-|                | ![Epsilon Sweep Experiment Results](./images/bandits/kab_testbed.png) |                     ![xxx](./images/markov_decision_process/trans_diagram.png)                      | ![xxx](./images/dynamic_programming/value_iteration.png)  |
-| **Algorithms** |  Investigate epsilon-greedy and optimistic initial value solutions.   | Expressing Bellman equations as simultaneous equations; using `np.linalg` to solve for state values |      Implement policy iteration and value iteration       |
-| **Environments** |                  The "KAB Testbed" (Sutton & Barto)                   |           [Frozen Lake](https://gymnasium.farama.org/environments/toy_text/frozen_lake/)            |            Jack's Car Rental (Sutton & Barto)             |
+## What you'll implement
 
+| Topic | [K-Armed Bandits](assignments/bandits.md) | [Analytic solutions to MDPs](assignments/markov_decision_processes.md) | [Dynamic Programming](assignments/dynamic_programming.md) |
+|:--|:--:|:--:|:--:|
+| Preview | ![Epsilon Sweep Experiment Results](./images/bandits/kab_testbed.png) | ![Frozen Lake transition diagram](./images/markov_decision_process/trans_diagram.png) | ![Value iteration results](./images/dynamic_programming/value_iteration.png) |
+| Algorithms | Investigate epsilon-greedy and optimistic initial values. | Express Bellman equations as simultaneous equations and solve them with `numpy.linalg`. | Implement policy iteration and value iteration. |
+| Environments | Sutton & Barto k-armed bandit testbed | [Frozen Lake](https://gymnasium.farama.org/environments/toy_text/frozen_lake/) | Jack's Car Rental |
 
-|     Topic      |                                        Monte Carlo                                        |                                Temporal Difference                                 |                     Planning                     |
-|:--------------:|:-----------------------------------------------------------------------------------------:|:----------------------------------------------------------------------------------:|:------------------------------------------------:|
-|                |                          ![xxx](./images/monte_carlo/detail.png)                          |                  ![xxx](./images/temporal_difference/detail.png)                   | ![xxx](./images/planning/blocking_maze_post.png) |
-| **Algorithms** | Implement first-visit MC prediction; MC control (exploring starts, on-policy, off-policy) |                   Implement Sarsa, Q-learning and Expected Sarsa                   |           Implement Dyna-Q and Dyna-Q+           |
-| **Environments** |        [Blackjack](https://gymnasium.farama.org/environments/toy_text/blackjack/)         | [Cliff Walking](https://gymnasium.farama.org/environments/toy_text/cliff_walking/) |         Planning Mazes (Sutton & Barto)          |
+| Topic | [Monte Carlo](assignments/monte_carlo.md) | [Temporal Difference](assignments/temporal_difference.md) | [Planning](assignments/planning.md) |
+|:--|:--:|:--:|:--:|
+| Preview | ![Monte Carlo results](./images/monte_carlo/detail.png) | ![Temporal difference results](./images/temporal_difference/detail.png) | ![Planning maze results](./images/planning/blocking_maze_post.png) |
+| Algorithms | Implement first-visit MC prediction and MC control. | Implement Sarsa, Q-learning, and Expected Sarsa. | Implement Dyna-Q and Dyna-Q+. |
+| Environments | [Blackjack](https://gymnasium.farama.org/environments/toy_text/blackjack/) | [Cliff Walking](https://gymnasium.farama.org/environments/toy_text/cliff_walking/) | Planning mazes |
 
-## Getting started
+## Python version
 
-1. **Clone the Repository:**
+Use **Python 3.11** for this repo.
 
-    ```bash
-    git clone https://github.com/<yourusername>/rl-fundamentals-assignments.git
-    ```
+The dependency pins in this course are intentionally conservative so the algorithms and plots stay stable. Newer Python versions, especially 3.12+ and 3.13+, are not the target for this course repo and may fail to install some of the older numerical packages in this project.
 
-2. **Navigate to the Repository:**
+## Get the repository
 
-    ```bash
-    cd rl-fundamentals-assignments
-    ```
+If you are using GitHub, copy the HTTPS clone URL for this repository from the green `Code` button and then run:
 
-3. **Create a Virtual Environment:**
+```bash
+git clone <repo-url>
+cd <repo-folder>
+```
 
-    Make sure you have Python installed. Then, create a virtual environment:
+If you downloaded the repository as a ZIP instead, extract it and open your terminal in the extracted project folder before running the setup commands below.
 
-    ```bash
-    python -m venv venv
-    ```
+## Quick start with `uv`
 
-4. **Activate the Virtual Environment:**
+Run all commands from the repository root.
 
-    - On **Windows**:
+1. Install [uv](https://docs.astral.sh/uv/).
+2. Make sure Python 3.11 is available.
 
-      ```bash
-      venv\Scripts\activate
-      ```
+   If you do not already have it, install it with:
 
-    - On **macOS/Linux**:
+   ```bash
+   uv python install 3.11
+   ```
 
-      ```bash
-      source venv/bin/activate
-      ```
+3. Sync the environment:
 
-5. **Install the Required Packages:**
+   ```bash
+   uv sync --python 3.11
+   ```
 
-    Once the virtual environment is activated, run:
+4. Run an assignment script:
 
-    ```bash
-    pip install -r requirements.txt
-    ```
+   ```bash
+   uv run python -m rl.experiments.temporal_difference.cliff_walking_learning_curves
+   ```
 
-6. **Add the Project Directory to PYTHONPATH:**
+5. Run a student self-check:
 
-    If you encounter an error like ModuleNotFoundError: No module named 'rl', it is likely that the rl folder is not part of your Python path. To resolve this, you can add the project directory to your Python path:
-  
-    1. ***Temporary Solution:***
-    
-        Windows:
-        
-        Open a terminal in the main directory of the course project (where the rl folder is located).
-        
-        Run the following command:
-        
-        ```set PYTHONPATH=%PYTHONPATH%;%CD%```
-        
-        Mac/Linux:
-        
-        In a terminal, navigate to the project's main directory (where the rl folder is located).
-        
-        Run the following command:
-        
-        ```export PYTHONPATH="${PYTHONPATH}:$(pwd)"```
-    
-    2. ***Permanent Solution:***
-      
-        Windows: Add the directory path to your system environment variables in "System Properties" -> "Environment Variables".
-        
-        Mac/Linux: Add the export `PYTHONPATH="${PYTHONPATH}:$(pwd)"` line to your shell configuration file (e.g., .bashrc, .zshrc). This will ensure that the path is set every time you open a terminal.
+   ```bash
+   uv run python -m checks.temporal_difference
+   ```
 
-7. **Explore Assignments:**
+You do not need to edit `PYTHONPATH` if you run commands from the repo root.
 
-    Each assignment has its own markdown file within the `assignments/` directory. Navigate to the desired assignment folder and follow the guidelines to complete the tasks.
+## Pip fallback
+
+If `uv` is not available on your machine, use the standard `venv` + `pip` flow instead.
+
+1. Create a Python 3.11 virtual environment.
+
+   Windows:
+
+   ```bash
+   py -3.11 -m venv .venv
+   ```
+
+   macOS/Linux:
+
+   ```bash
+   python3.11 -m venv .venv
+   ```
+
+2. Activate it.
+
+   Windows:
+
+   ```bash
+   .venv\Scripts\activate
+   ```
+
+   macOS/Linux:
+
+   ```bash
+   source .venv/bin/activate
+   ```
+
+3. Install dependencies:
+
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+4. Run the same module commands:
+
+   ```bash
+   python -m rl.experiments.temporal_difference.cliff_walking_learning_curves
+   python -m checks.temporal_difference
+   ```
+
+## Student self-checks
+
+Each topic has a lightweight local checker. They are designed to be more helpful than a raw traceback and more precise than comparing plots by eye.
+
+Available commands:
+
+- `python -m checks.bandits`
+- `python -m checks.markov_decision_processes`
+- `python -m checks.dynamic_programming`
+- `python -m checks.monte_carlo`
+- `python -m checks.temporal_difference`
+- `python -m checks.planning`
+
+Run `python -m checks` to see the full list and a short description of each command.
+
+## Working through the course
+
+1. Open the relevant brief in `assignments/`.
+2. Implement the code inside the marked homework or assignment regions.
+3. Run the matching `checks.*` command.
+4. Run the experiment script for that topic and compare the broad shape of the result to the course notes.
 
 ## Additional resources
 
-- **Books:**
-  - The Bible! Sutton, R. S., & Barto, A. G. (2018). *Reinforcement Learning: An Introduction* (Second Edition).
-  - Most of the environments encountered in this course originate from this amazing and seminal book (e.g. Jack's Car Hire), and it has informed luminaries from Demis Hassabis and David Silver at DeepMind to Andrew Ng and Yann LeCun.
-  - If you are enjoying this course, I would encourage you to buy *Reinforcement Learning: An Introduction* as it is well worth the investment.
-
-- **Documentation:**
-  - [Gymnasium Documentation](https://gymnasium.farama.org/)
-  - [NumPy Documentation](https://numpy.org/doc/)
-  - [Pandas Documentation](https://pandas.pydata.org/docs/)
-  - [Matplotlib Documentation](https://matplotlib.org/stable/contents.html)
+- Sutton, R. S., & Barto, A. G. (2018). _Reinforcement Learning: An Introduction_ (Second Edition).
+- [Gymnasium documentation](https://gymnasium.farama.org/)
+- [NumPy documentation](https://numpy.org/doc/)
+- [Pandas documentation](https://pandas.pydata.org/docs/)
+- [Matplotlib documentation](https://matplotlib.org/stable/)
 
 ## Contact
 
-For any questions or issues, please contact [Tom Walker](mailto:tom.walker.univ@gmail.com).
+For course questions or issues, contact [Tom Walker](mailto:tom.walker.univ@gmail.com).

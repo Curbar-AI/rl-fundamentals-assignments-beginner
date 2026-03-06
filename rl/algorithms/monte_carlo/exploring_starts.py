@@ -110,7 +110,7 @@ class MCExploringStartsAgent(MonteCarloAgent):
             for t, (state, action, reward) in enumerate(reversed(episode)):
 
                 # HOMEWORK: G <- gamma * G + R_t+1
-                returns  = None  # TODO: Implement this assignment
+                returns = None  # TODO: Implement this assignment
 
                 # If the S_t, A_t pair has been seen before, continue to next for loop iteration
                 # (this bit enacts first-visit MC)

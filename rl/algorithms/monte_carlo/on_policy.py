@@ -92,27 +92,13 @@ class MCOnPolicy(MonteCarloAgent):
             # HOMEWORK: Generate an episode.
             # In the Exploring Starts module, you used `exploring_starts=True`.
             # Here, we want to use `exploring_starts=False`.
-            episode  = None  # TODO: Implement this assignment
+            episode = None  # TODO: Implement this assignment
 
             # Loop through the episode in reverse order, updating the q-values and policy
             # HOMEWORK STARTS: (~10 lines of code) Update the q-values by looping through the episode in reverse order.
             # This part of the code is almost identical to the Exploring Starts module learn method,
             # but note that we do not need the final line to update the policy here.
-            returns: float = 0
-            for t, (state, action, reward) in enumerate(reversed(episode)):
-                returns = self.gamma * returns + reward
-
-                # If the S_t, A_t pair has been seen before, continue.
-                if self._is_subelement_present((state, action), episode[:len(episode) - t - 1]):
-                    continue
-
-                # Update the q-value for this state-action pair
-                # NewEstimate <- OldEstimate + 1/N(St, At) * (Return - OldEstimate)
-                mc_error: float = returns - self.q_values.get(state, action)
-                self.state_action_stats.update(state, action)  # Get N(St, At)
-                step_size: float = 1 / self.state_action_stats.get(state, action)
-                new_value: float = self.q_values.get(state, action) + step_size * mc_error
-                self.q_values.update(state, action, new_value)
+            pass  # TODO: Implement this section
             # HOMEWORK ENDS
 
             # Log the episode
